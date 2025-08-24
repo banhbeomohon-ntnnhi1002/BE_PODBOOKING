@@ -1,4 +1,4 @@
-from infrastructure.databases.mssql import init_mssql
+from src.infrastructure.databases.mssql import init_mssql
 from infrastructure.models import todo_model
 
 def init_db(app):
