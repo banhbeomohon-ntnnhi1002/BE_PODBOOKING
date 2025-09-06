@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from src.api.swagger import spec
 from src.api.controllers.todo_controller import bp as todo_bp
+from src.api.controllers.analytics_controller import bp as analytics_bp
 from src.api.middleware import middleware
 from src.api.responses import success_response
 from src.infrastructure.databases import init_db
@@ -15,6 +16,7 @@ def create_app():
     Swagger(app)
     # Đăng ký blueprint trước
     app.register_blueprint(todo_bp)
+    app.register_blueprint(analytics_bp)
 
      # Thêm Swagger UI blueprint
     SWAGGER_URL = '/docs'
