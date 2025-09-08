@@ -27,10 +27,7 @@ def create_app():
     Swagger(app)
     # Đăng ký blueprint trước
     app.register_blueprint(todo_bp)
-<<<<<<< HEAD
     app.register_blueprint(analytics_bp)
-=======
->>>>>>> Services_Add-ons
 
      # Thêm Swagger UI blueprint
     SWAGGER_URL = '/docs'
@@ -42,31 +39,17 @@ def create_app():
     )
     app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
-<<<<<<< HEAD
     init_db(app)
-=======
-    try:
-        init_db(app)
-    except Exception as e:
-        print(f"Error initializing database: {e}")
->>>>>>> Services_Add-ons
 
     # Register middleware
     middleware(app)
 
     # Register routes
-<<<<<<< HEAD
     # Example: app.add_url_rule('/example', view_func=example_view)
     # Tự động quét tất cả các route đã đăng ký
     with app.test_request_context():
         for rule in app.url_map.iter_rules():
             if rule.endpoint.startswith('todo.'):
-=======
-    with app.test_request_context():
-        for rule in app.url_map.iter_rules():
-            # Thêm các endpoint khác nếu cần
-            if rule.endpoint.startswith(('todo.', 'course.', 'user.')):
->>>>>>> Services_Add-ons
                 view_func = app.view_functions[rule.endpoint]
                 print(f"Adding path: {rule.rule} -> {view_func}")
                 spec.path(view=view_func)

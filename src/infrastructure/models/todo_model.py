@@ -1,9 +1,5 @@
 from sqlalchemy import Column, Integer, String, DateTime
-<<<<<<< HEAD
 from src.infrastructure.databases.base import Base
-=======
-from infrastructure.databases.base import Base
->>>>>>> Services_Add-ons
 
 class TodoModel(Base):
     __tablename__ = 'todos'
