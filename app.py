@@ -1,8 +1,9 @@
-<<<<<<< HEAD
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_jwt_extended import JWTManager
 from config import Config
 from api.auth.controller import auth_bp
+from flask_cors import CORS
+from payment_service import PaymentService
 
 # Khởi tạo ứng dụng Flask
 app = Flask(__name__)
@@ -12,29 +13,24 @@ app.config.from_object(Config)
 
 # Khởi tạo JWTManager để hỗ trợ JWT
 jwt = JWTManager(app)
+# Cho phép CORS để xử lý các yêu cầu từ các domain khác nhau
+CORS(app)
+
+# Khởi tạo dịch vụ thanh toán
+payment_service = PaymentService()
 
 # Đăng ký Blueprint của Auth
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
 
 @app.route('/')
 def home():
-    return "Welcome to the Auth API!"
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
-=======
-# app.py
-
-from flask import Flask, request, jsonify
-from payment_service import PaymentService
-from flask_cors import CORS
-app = Flask(__name__)
-CORS(app)
-payment_service = PaymentService()
-
+    return "Welcome to the API!"
 
 @app.route('/get-stripe-link', methods=['POST'])
 def get_stripe_link():
+    """
+    Tạo link thanh toán Stripe cho một sản phẩm/booking.
+    """
     data = request.get_json()
     product_key = data.get('product_key')
     booking_id = data.get('booking_id')
@@ -54,5 +50,6 @@ def get_stripe_link():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=4242)
->>>>>>> payment
+    # Chạy ứng dụng Flask.
+    # Đã thống nhất chỉ dùng một port duy nhất để tránh xung đột.
+    app.run(debug=True, port=5000)
