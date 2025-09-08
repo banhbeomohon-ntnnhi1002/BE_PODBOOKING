@@ -1,7 +1,11 @@
 from apispec import APISpec
 from apispec.ext.marshmallow import MarshmallowPlugin
 from apispec_webframeworks.flask import FlaskPlugin
+<<<<<<< HEAD
 from src.api.schemas.todo import TodoRequestSchema, TodoResponseSchema
+=======
+from api.schemas.todo import TodoRequestSchema, TodoResponseSchema
+>>>>>>> Services_Add-ons
 
 spec = APISpec(
     title="Todo API",
